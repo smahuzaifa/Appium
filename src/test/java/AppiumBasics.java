@@ -3,14 +3,18 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 public class AppiumBasics{
     @Test
-    public void appiumTest() throws MalformedURLException {
+    public void appiumTest() throws MalformedURLException, URISyntaxException {
         UiAutomator2Options options = new UiAutomator2Options();
-        options.setDeviceName("");
+        options.setDeviceName("Pixel 9 Pro"); //Emulator
+        options.setApp("C:\\Users\\huzai\\IdeaProjects\\Appium\\src\\test\\java\\resources\\ApiDemos-debug.apk");
 
-        AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"),options);
+
+        AndroidDriver driver = new AndroidDriver(new URI("http://127.0.0.1:4723/").toURL(),options);
     }
 }
