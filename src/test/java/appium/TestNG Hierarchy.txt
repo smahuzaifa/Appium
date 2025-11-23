@@ -1,4 +1,4 @@
-TestNG Execution Sequence Example:
+TestNG Execution Annotation Sequence Example:
 
 @BeforeSuite
 

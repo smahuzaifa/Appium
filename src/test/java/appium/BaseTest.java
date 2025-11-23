@@ -4,7 +4,9 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
@@ -15,7 +17,7 @@ import java.net.URISyntaxException;
 public class BaseTest {
     public AndroidDriver driver;
     public AppiumDriverLocalService service;
-    @BeforeMethod
+    @BeforeClass
     public void configuringAppium() throws URISyntaxException, MalformedURLException {
         //To Start the Appium Server automatically
         service = new AppiumServiceBuilder().withAppiumJS(new File("C:\\Users" +
@@ -33,7 +35,7 @@ public class BaseTest {
         //Creating androidDriver object
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723/").toURL(),options);
     }
-    @AfterMethod
+    @AfterClass
     public void tearDown(){
         driver.quit(); //Closes the app once automation is done
         service.stop();
