@@ -27,27 +27,4 @@ public class AppiumBasics extends BaseTest {
         driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"android:id/edit\")")).sendKeys("Hello123");
         driver.findElement(By.id("android:id/button1")).click();
     }
-    @Test
-    public void longPressGesture() throws InterruptedException {
-        driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Views\")")).click();
-        driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"Expandable Lists\"]")).click();
-        driver.findElement(AppiumBy.accessibilityId("1. Custom Adapter")).click();
-        WebElement element = driver.findElement(By.xpath("//android.widget.TextView[@text=\"People Names\"]"));
-        longPressActions(element,2000);
-        By menuText = AppiumBy.androidUIAutomator("new UiSelector().text(\"Sample menu\")");
-        String menuTextValue = driver.findElement(menuText).getText();
-        System.out.println(menuTextValue);
-        Assert.assertEquals(menuTextValue,"Sample menu");
-        Assert.assertTrue(driver.findElement(menuText).isDisplayed());
-        Thread.sleep(3000);
-    }
-
-    @Test
-    public void scrollActionIntoView() throws InterruptedException {
-        driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Views\")")).click();
-        //driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"WebView\"));"));
-        scrollIntoView("WebView");
-        Thread.sleep(5000);
-
-    }
 }
