@@ -12,18 +12,13 @@ public class AppiumBasics2 extends BaseTest {
     public static final By wifiSettings = AppiumBy.androidUIAutomator("new UiSelector().text(\"WiFi settings\")");
     public static final By wifiEdit = AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"android:id/edit\")");
     public static final By okButton = By.id("android:id/button1");
-    /*
-    What Each Keyword Means
-public:
-The variable is accessible from any other class (if needed).
+    /* What Each Keyword Means:
+        public: The variable is accessible from any other class (if needed).
 
-static:
-The variable belongs to the class itself, not any instance.
+        static: The variable belongs to the class itself, not any instance.This means only one copy exists in
+        memory for the entire class, saving space and preventing duplication.
 
-This means only one copy exists in memory for the entire class, saving space and preventing duplication.
-
-final:
-The variable cannot be changed after it's assigned—it's a constant.
+        final: The variable cannot be changed after it's assigned—it's a constant.
      */
 
     @Test
@@ -34,5 +29,6 @@ The variable cannot be changed after it's assigned—it's a constant.
         driver.findElement(wifiSettings).click();
         driver.findElement(wifiEdit).sendKeys("Hello123");
         driver.findElement(okButton).click();
+
     }
 }
