@@ -81,7 +81,6 @@ public class BaseTest2 {
                 ,ImmutableMap.of("elementId",((RemoteWebElement)element).getId(),
                 "endX",x, "endY",y)); //Mention the coordinates by switching from select element modes
     }
-    //Adding wait for a screen to load
     //This is called explicit wait
     public void waitForAttributeContains(By locator, String attribute, String value, int time) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));

@@ -6,9 +6,12 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -79,6 +82,11 @@ public class BaseTest {
         ((JavascriptExecutor)driver).executeScript("mobile: dragGesture"
                 ,ImmutableMap.of("elementId",((RemoteWebElement)element).getId(),
                 "endX",x, "endY",y)); //Mention the coordinates by switching from select element modes
+    }
+    //This is called explicit wait
+    public void waitForAttributeContains(By locator, String attribute, String value, int time) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
+        wait.until(ExpectedConditions.attributeContains(driver.findElement(locator), attribute, value));
     }
     @AfterClass
     public void tearDown(){
