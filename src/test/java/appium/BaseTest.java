@@ -69,6 +69,17 @@ public class BaseTest {
                         //x can be down or up or left or right
          "percent",3.0));
     }
+    public void swipeAction(WebElement element, String x,double y){
+        ((JavascriptExecutor)driver).executeScript("mobile: swipeGesture"
+                ,ImmutableMap.of("elementId",((RemoteWebElement)element).getId(),
+                        "direction",x,
+                        "percent",y)); //The value of y should be between 0 and 1
+    }
+    public void dragAndDropGesture(WebElement element,int x,int y){
+        ((JavascriptExecutor)driver).executeScript("mobile: dragGesture"
+                ,ImmutableMap.of("elementId",((RemoteWebElement)element).getId(),
+                "endX",x, "endY",y));
+    }
     @AfterClass
     public void tearDown(){
         driver.quit(); //Closes the app once automation is done
