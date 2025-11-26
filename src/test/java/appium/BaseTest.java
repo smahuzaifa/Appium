@@ -78,7 +78,7 @@ public class BaseTest {
     public void dragAndDropGesture(WebElement element,int x,int y){
         ((JavascriptExecutor)driver).executeScript("mobile: dragGesture"
                 ,ImmutableMap.of("elementId",((RemoteWebElement)element).getId(),
-                "endX",x, "endY",y));
+                "endX",x, "endY",y)); //Mention the coordinates by switching from select element modes
     }
     @AfterClass
     public void tearDown(){

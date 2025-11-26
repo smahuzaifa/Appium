@@ -6,8 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@Test
+
 public class SwipeAction extends BaseTest{
+    @Test
     public void swipeAction(){
         driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Views\")")).click();
         driver.findElement(AppiumBy.accessibilityId("Gallery")).click();

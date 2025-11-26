@@ -4,7 +4,7 @@ import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class AppiumBasics2 extends BaseTest {
+public class AppiumBasicsWithVariableDeclaration extends BaseTest {
     // Locators for reuse
     public static final By preference = AppiumBy.androidUIAutomator("new UiSelector().text(\"Preference\")");
     public static final By preferenceDependencies = AppiumBy.xpath("//android.widget.TextView[@content-desc=\"3. Preference dependencies\"]");
