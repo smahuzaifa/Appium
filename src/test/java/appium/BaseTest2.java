@@ -86,6 +86,11 @@ public class BaseTest2 {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
         wait.until(ExpectedConditions.attributeContains(driver.findElement(locator), attribute, value));
     }
+    public double getFormattedAmount(String x){
+        double price =Double.parseDouble(x.substring(1));
+        System.out.println("The actual value in the cart is "+x);
+        return price;
+    }
 
     @AfterClass
     public void tearDown(){
