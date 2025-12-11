@@ -52,7 +52,15 @@ public class BaseTest {
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("Pixel 9 Pro");
-        options.setApp("/Users/huzaifa/IdeaProjects/Appium/src/test/java/resources/ApiDemos-debug.apk");
+        String apkPath;
+        if (os.contains("win")) {
+            apkPath = "C:\\Users\\huzai\\IdeaProjects\\Appium\\src\\test\\java\\resources\\ApiDemos-debug.apk";
+        } else if (os.contains("mac")) {
+            apkPath = "/Users/huzaifa/IdeaProjects/Appium/src/test/java/resources/ApiDemos-debug.apk";
+        } else {
+            throw new RuntimeException("Unsupported OS: " + os);
+        }
+        options.setApp(apkPath);
 
 
         //Creating androidDriver object
