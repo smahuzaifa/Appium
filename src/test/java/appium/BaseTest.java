@@ -22,27 +22,41 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Duration;
+import io.appium.java_client.service.local.flags.GeneralServerFlag;
+
 
 public class BaseTest {
     public AndroidDriver driver;
     public AppiumDriverLocalService service;
     @BeforeClass
-    public void configuringAppium() throws URISyntaxException, MalformedURLException {
-        //To Start the Appium Server automatically
-        service = new AppiumServiceBuilder().withAppiumJS(new File("C:\\Users" +
-                        "\\huzai\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
-                .withIPAddress("127.0.0.1").usingPort(4723).build();
-        service.start();
-        //This mentions the path to main.js which starts the server and then passing the appium server
-        // url and then the port number
+    public void configuringAppium() throws Exception {
+        String os = System.getProperty("os.name").toLowerCase();
+        String appiumJSPath;
 
-        //Setting the device and its capabilites
+        if (os.contains("win")) {
+            appiumJSPath = "C:\\Users\\huzai\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js";
+        } else if (os.contains("mac")) {
+            appiumJSPath = "/opt/homebrew/lib/node_modules/appium/build/lib/main.js";
+        } else {
+            throw new RuntimeException("Unsupported OS: " + os);
+        }
+
+        service = AppiumDriverLocalService.buildService(
+                new AppiumServiceBuilder()
+                        .withAppiumJS(new File(appiumJSPath))
+                        .withIPAddress("127.0.0.1")
+                        .usingPort(4723)
+                        .withArgument(GeneralServerFlag.BASEPATH, "/wd/hub") // <-- important
+        );
+        service.start();
+
         UiAutomator2Options options = new UiAutomator2Options();
-        options.setDeviceName("Pixel 9 Pro"); //Emulator
-        options.setApp("C:\\Users\\huzai\\IdeaProjects\\Appium\\src\\test\\java\\resources\\ApiDemos-debug.apk");
+        options.setDeviceName("Pixel 9 Pro");
+        options.setApp("/Users/huzaifa/IdeaProjects/Appium/src/test/java/resources/ApiDemos-debug.apk");
+
 
         //Creating androidDriver object
-        driver = new AndroidDriver(new URI("http://127.0.0.1:4723/").toURL(),options);
+        driver = new AndroidDriver(new URI("http://127.0.0.1:4723/wd/hub").toURL(),options);
         // Uniform Resource Identifier (URI) is a string that identifies a resource, while a
         // Uniform Resource Locator (URL) is a type of URI that specifies both the identity and the
         // location of a resource, typically on the web
