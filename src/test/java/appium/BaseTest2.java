@@ -61,7 +61,7 @@ public class BaseTest2 {
 
 
         //Creating androidDriver object
-        driver = new AndroidDriver(new URI("http://127.0.0.1:4723/wd/hub").toURL(),options);
+        driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(),options);
         // Uniform Resource Identifier (URI) is a string that identifies a resource, while a
         // Uniform Resource Locator (URL) is a type of URI that specifies both the identity and the
         // location of a resource, typically on the web
