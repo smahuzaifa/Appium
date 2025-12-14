@@ -1,10 +1,14 @@
 package appium;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.options.XCUITestOptions;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -49,7 +53,18 @@ public class IOSBaseTest {
 
         driver = new IOSDriver(new URI("http://127.0.0.1:4723").toURL(),options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
+    }
+    public void longPressActions(WebElement element, int time){
+        ((JavascriptExecutor)driver).executeScript("mobile: touchAndHold",
+                ImmutableMap.of("elementId", ((RemoteWebElement)element).getId(),"duration",time));
+    }
+    public void scrollAction(WebElement element, String direction){
+        ((JavascriptExecutor)driver).executeScript("mobile: scroll"
+                ,ImmutableMap.of("elementId", ((RemoteWebElement)element).getId(),"direction",direction));
+    }
+    public void swipeAction(WebElement element, String direction){
+        ((JavascriptExecutor)driver).executeScript("mobile: swipe"
+                ,ImmutableMap.of("elementId", ((RemoteWebElement)element).getId(),"direction",direction));
     }
     @AfterClass
     public void tearDown(){

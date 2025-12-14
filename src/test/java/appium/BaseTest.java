@@ -94,6 +94,7 @@ public class BaseTest {
                         //x can be down or up or left or right
          "percent",3.0));
     }
+
     public void swipeAction(WebElement element, String x,double y){
         ((JavascriptExecutor)driver).executeScript("mobile: swipeGesture"
                 ,ImmutableMap.of("elementId",((RemoteWebElement)element).getId(),
