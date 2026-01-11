@@ -7,17 +7,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class SwipeAction extends BaseTest{
+public class SwipeAction extends BaseTest {
     @Test
-    public void swipeAction(){
+    public void swipeAction() {
         driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Views\")")).click();
         driver.findElement(AppiumBy.accessibilityId("Gallery")).click();
         driver.findElement(AppiumBy.accessibilityId("1. Photos")).click();
         WebElement firstImage = driver.findElement(By.xpath("//android.widget.ImageView[1]"));
-        Assert.assertEquals(firstImage.getAttribute("selected"),"true");
+        Assert.assertEquals(firstImage.getAttribute("selected"), "true");
         //Swipe
-        swipeAction(firstImage,"left",0.1);
-        Assert.assertEquals(firstImage.getAttribute("selected"),"false");
+        swipeAction(firstImage, "left", 0.1);
+        Assert.assertEquals(firstImage.getAttribute("selected"), "false");
 
 
     }

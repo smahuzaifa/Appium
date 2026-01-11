@@ -14,6 +14,6 @@ public class IOSSlider extends IOSBaseTest {
         driver.findElement(By.xpath("//XCUIElementTypeSlider[@value=\"42%\"]")).sendKeys("1&");
         driver.findElement(By.xpath("//XCUIElementTypeSlider[@value=\"84%\"]")).sendKeys("0%");
         System.out.println(slider.getAttribute("value"));
-        Assert.assertEquals("100%",slider.getAttribute("value"));
+        Assert.assertEquals("100%", slider.getAttribute("value"));
     }
 }

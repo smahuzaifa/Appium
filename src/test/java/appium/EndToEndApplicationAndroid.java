@@ -2,21 +2,15 @@ package appium;
 
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
 import java.util.List;
 
-public class EndToEndApplicationAndroid extends BaseTest2{
+public class EndToEndApplicationAndroid extends BaseTest2 {
     @Test
-    public void FirstPage(){
+    public void FirstPage() {
         driver.findElement(By.id("com.androidsample.generalstore:id/spinnerCountry")).click();
         scrollIntoView("Bermuda");
         driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Bermuda\")")).click();
@@ -25,6 +19,7 @@ public class EndToEndApplicationAndroid extends BaseTest2{
         driver.hideKeyboard();
         driver.findElement(By.id("com.androidsample.generalstore:id/btnLetsShop")).click();
     }
+
     @Test
     public void ToastMessage() throws InterruptedException {
         driver.findElement(By.id("com.androidsample.generalstore:id/spinnerCountry")).click();
@@ -39,10 +34,11 @@ public class EndToEndApplicationAndroid extends BaseTest2{
         //android.widget.Toast this is the class in which the toast messages are stored.
         //We are using this because we cannot inspect toast messages
         System.out.println(toastMessage);
-        Assert.assertEquals(toastMessage,"Please enter your name");
+        Assert.assertEquals(toastMessage, "Please enter your name");
     }
+
     @Test
-    public void addToCart(){
+    public void addToCart() {
         driver.findElement(By.id("com.androidsample.generalstore:id/spinnerCountry")).click();
         scrollIntoView("Bermuda");
         driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Bermuda\")")).click();
@@ -53,9 +49,9 @@ public class EndToEndApplicationAndroid extends BaseTest2{
         scrollIntoView("Air Jordan 9 Retro");
         //When there are multiple elemnts and no unique id can be found we use driver.findElements
         int productSize = driver.findElements(By.id("com.androidsample.generalstore:id/productName")).size();
-        for(int i=0;i<productSize;i++){
+        for (int i = 0; i < productSize; i++) {
             String productName = driver.findElements(By.id("com.androidsample.generalstore:id/productName")).get(i).getText();
-            if(productName.equalsIgnoreCase("Air Jordan 9 Retro")){
+            if (productName.equalsIgnoreCase("Air Jordan 9 Retro")) {
                 driver.findElements(By.id("com.androidsample.generalstore:id/productAddCart")).get(i).click();
                 break;
             }
@@ -65,16 +61,17 @@ public class EndToEndApplicationAndroid extends BaseTest2{
         waitForAttributeContains(By.id
                 ("com.androidsample.generalstore:id/toolbar_title"), "text", "Cart", 5);
         int cartSize = driver.findElements(By.id("com.androidsample.generalstore:id/productName")).size();
-        for(int i=0;i<cartSize;i++){
+        for (int i = 0; i < cartSize; i++) {
             String productName = driver.findElements(By.id("com.androidsample.generalstore:id/productName")).get(i).getText();
-            if(productName.equalsIgnoreCase("Air Jordan 9 Retro")){
+            if (productName.equalsIgnoreCase("Air Jordan 9 Retro")) {
                 System.out.println("The product has been added");
                 break;
             }
         }
     }
+
     @Test
-    public void addingCartValue(){
+    public void addingCartValue() {
         driver.findElement(By.id("com.androidsample.generalstore:id/spinnerCountry")).click();
         scrollIntoView("Bermuda");
         driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Bermuda\")")).click();
@@ -85,17 +82,17 @@ public class EndToEndApplicationAndroid extends BaseTest2{
         scrollIntoView("Air Jordan 9 Retro");
         //When there are multiple elemnts and no unique id can be found we use driver.findElements
         int productSize = driver.findElements(By.id("com.androidsample.generalstore:id/productName")).size();
-        for(int i=0;i<productSize;i++){
+        for (int i = 0; i < productSize; i++) {
             String productName = driver.findElements(By.id("com.androidsample.generalstore:id/productName")).get(i).getText();
-            if(productName.equalsIgnoreCase("Air Jordan 9 Retro")){
+            if (productName.equalsIgnoreCase("Air Jordan 9 Retro")) {
                 driver.findElements(By.id("com.androidsample.generalstore:id/productAddCart")).get(i).click();
                 break;
             }
         }
         scrollIntoView("Jordan 6 Rings");
-        for(int i=0;i<productSize;i++){
+        for (int i = 0; i < productSize; i++) {
             String productName = driver.findElements(By.id("com.androidsample.generalstore:id/productName")).get(i).getText();
-            if(productName.equalsIgnoreCase("Jordan 6 Rings")){
+            if (productName.equalsIgnoreCase("Jordan 6 Rings")) {
                 driver.findElements(By.id("com.androidsample.generalstore:id/productAddCart")).get(i).click();
                 break;
             }
@@ -108,34 +105,36 @@ public class EndToEndApplicationAndroid extends BaseTest2{
         //Adding the cart value
         List<WebElement> productPrices = driver.findElements(By.id("com.androidsample.generalstore:id/productPrice"));
         int count = productPrices.size();
-        double sum=0;
-        for(int i=0;i<count;i++){
+        double sum = 0;
+        for (int i = 0; i < count; i++) {
             String value = productPrices.get(i).getText();
-            double amount = getFormattedAmount(value );//to remove $
+            double amount = getFormattedAmount(value);//to remove $
             sum = sum + amount;
         }
-        System.out.println("The value in the cart adds up to "+sum);
+        System.out.println("The value in the cart adds up to " + sum);
         String actualValueWith$ = driver.findElement(By.id("com.androidsample.generalstore:id/totalAmountLbl")).getText();
-        Double actualValue= getFormattedAmount(actualValueWith$);
-        System.out.println("The actual value in the cart is "+actualValue);
-        Assert.assertEquals(sum,actualValue);
+        Double actualValue = getFormattedAmount(actualValueWith$);
+        System.out.println("The actual value in the cart is " + actualValue);
+        Assert.assertEquals(sum, actualValue);
     }
+
     @Test
-    public void cartPageActions(){
+    public void cartPageActions() {
         addingCartValue();
         driver.findElement(By.className("android.widget.CheckBox")).click();
         longPressActions(driver.findElement(By.id("com.androidsample.generalstore:id/termsButton")));
         Assert.assertTrue(driver.findElement(By.id("android:id/message")).isDisplayed());
         driver.findElement(By.id("android:id/button1")).click();
     }
+
     @Test
-    public void handlingBrowserViaTheApp(){
+    public void handlingBrowserViaTheApp() {
         addToCart();
         driver.findElement(By.className("android.widget.CheckBox")).click();
         driver.findElement(By.id("com.androidsample.generalstore:id/btnProceed")).click();
         //Handling Hybrid application
         driver.getContextHandles();
-        System.out.println("The available contexts are "+driver.getContextHandles());
+        System.out.println("The available contexts are " + driver.getContextHandles());
         driver.context("WEBVIEW_com.androidsample.generalstore");
         //The context has now been switched to the webview
         driver.context("NATIVE_APP");

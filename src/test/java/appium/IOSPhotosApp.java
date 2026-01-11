@@ -10,11 +10,11 @@ import java.util.Map;
 
 public class IOSPhotosApp extends IOSBaseTest {
     @Test
-    public void photosApp(){
+    public void photosApp() {
         //In iOS we use Bundle ID
-        Map<String,Object> params = new HashMap<>();
-        params.put("bundleId","com.apple.mobileslideshow");
-        driver.executeScript("mobile:launchApp",params);
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", "com.apple.mobileslideshow");
+        driver.executeScript("mobile:launchApp", params);
         List<WebElement> allPhotos = driver.findElements(AppiumBy.iOSClassChain("**/XCUIElementTypeImage[`name == \"PXGGridLayout-Info\"`]"));
         System.out.println(allPhotos.size());
 

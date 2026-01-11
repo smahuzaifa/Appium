@@ -13,11 +13,11 @@ public class LongTap extends BaseTest {
         driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"Expandable Lists\"]")).click();
         driver.findElement(AppiumBy.accessibilityId("1. Custom Adapter")).click();
         WebElement element = driver.findElement(By.xpath("//android.widget.TextView[@text=\"People Names\"]"));
-        longPressActions(element,2000);
+        longPressActions(element, 2000);
         By menuText = AppiumBy.androidUIAutomator("new UiSelector().text(\"Sample menu\")");
         String menuTextValue = driver.findElement(menuText).getText();
         System.out.println(menuTextValue);
-        Assert.assertEquals(menuTextValue,"Sample menu");
+        Assert.assertEquals(menuTextValue, "Sample menu");
         Assert.assertTrue(driver.findElement(menuText).isDisplayed());
         Thread.sleep(3000);
     }

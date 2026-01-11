@@ -11,15 +11,15 @@ import java.util.Map;
 
 public class IOSScroll extends IOSBaseTest {
     @Test
-    public void iOSScroll(){
+    public void iOSScroll() {
         WebElement webviews = driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name=\"Web View\"]"));
-        Map<String,Object> params = new HashMap<>();
-        params.put("element",((RemoteWebElement)webviews).getId());
-        params.put("direction","down");
-        driver.executeScript("mobile:scroll",params);
+        Map<String, Object> params = new HashMap<>();
+        params.put("element", ((RemoteWebElement) webviews).getId());
+        params.put("direction", "down");
+        driver.executeScript("mobile:scroll", params);
         webviews.click();
         driver.findElement(By.xpath("//XCUIElementTypeButton[@name=\"BackButton\"]")).click();
-        scrollAction(webviews,"down");
+        scrollAction(webviews, "down");
         webviews.click();
         driver.findElement(By.xpath("//XCUIElementTypeButton[@name=\"BackButton\"]")).click();
         driver.findElement(AppiumBy.iOSNsPredicateString("name == \"Picker View\"")).click();
