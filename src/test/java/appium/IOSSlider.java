@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class iOSSlider extends IOSBaseTest{
+public class IOSSlider extends IOSBaseTest {
     @Test
     public void slidingAction() throws InterruptedException {
         driver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeStaticText[`name == \"Sliders\"`]")).click();

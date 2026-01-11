@@ -1,12 +1,11 @@
 package appium;
 
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.ios.options.XCUITestOptions;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class iOSBasics extends IOSBaseTest{
+public class IOSBasics extends IOSBaseTest {
     @Test
     public void iOSBasics(){
         driver.findElement(AppiumBy.accessibilityId("Alert Views")).click();

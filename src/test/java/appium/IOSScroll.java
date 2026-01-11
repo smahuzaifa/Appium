@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class iOSScroll extends IOSBaseTest {
+public class IOSScroll extends IOSBaseTest {
     @Test
     public void iOSScroll(){
         WebElement webviews = driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name=\"Web View\"]"));

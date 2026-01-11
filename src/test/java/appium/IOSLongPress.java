@@ -1,8 +1,6 @@
 package appium;
 
-import com.google.common.collect.ImmutableMap;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.annotations.Test;
@@ -10,7 +8,7 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class iOSLongPress extends IOSBaseTest{
+public class IOSLongPress extends IOSBaseTest {
     @Test
     public void longPresstest(){
         driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name=\"Steppers\"]")).click();
